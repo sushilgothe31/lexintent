@@ -124,25 +124,25 @@ export function DashboardScreen() {
   return (
     <div className="space-y-6">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-card to-accent/5 p-6 lg:p-8">
-        <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-24 w-64 rounded-full bg-accent/10 blur-3xl" />
-        <div className="relative">
-          <div className="flex items-center gap-2 mb-3">
-            <Scale className="h-5 w-5 text-primary" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-              Decentralized Escrow & Arbitration
-            </span>
-          </div>
-          <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-2">
-            Trustless agreements for{' '}
-            <span className="solana-gradient">freelancers & clients</span>
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mb-6">
-            Lock SOL in escrow with a statement of intent. If either party disputes the work,
-            a staked jury votes to resolve — all on-chain, all transparent.
-          </p>
-          <div className="flex flex-wrap gap-3">
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-primary/20 bg-gradient-to-br from-[#171229] via-card to-[#071d1b] p-5 shadow-2xl shadow-primary/10 sm:p-7 lg:p-10">
+        <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-20 left-1/3 h-40 w-72 rounded-full bg-accent/15 blur-3xl" />
+        <div className="relative grid items-center gap-8 lg:grid-cols-[1.05fr_.95fr]">
+          <div>
+            <div className="mb-4 flex items-center gap-2">
+              <Scale className="h-4 w-4 text-accent" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+                On-chain justice protocol
+              </span>
+            </div>
+            <h1 className="font-display text-[2.35rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl">
+              Agreements with <span className="solana-gradient">conviction.</span>
+            </h1>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+              A premium escrow and arbitration layer for the Solana economy. Put intent on-chain,
+              lock value with confidence, and let a staked jury protect the outcome.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
             <Button
               size="lg"
               className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90"
@@ -160,6 +160,15 @@ export function DashboardScreen() {
               <Gavel className="h-4 w-4" />
               Join the Jury
             </Button>
+            </div>
+          </div>
+          <div className="hero-art relative min-h-48 overflow-hidden rounded-2xl border border-white/10 bg-black/30 sm:min-h-64">
+            <img src="/justice-statue.jpeg" alt="Classical statue of Justice holding the scales of law" className="absolute inset-0 h-full w-full object-cover opacity-75 mix-blend-luminosity" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0b0718] via-transparent to-accent/20" />
+            <div className="absolute bottom-4 left-4 rounded-xl border border-white/15 bg-black/40 px-3 py-2 backdrop-blur-md">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-accent">Solana / Devnet</p>
+              <p className="mt-1 text-xs text-white/80">Justice, verified by code.</p>
+            </div>
           </div>
         </div>
       </div>

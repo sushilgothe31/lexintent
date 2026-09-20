@@ -10,10 +10,8 @@ import {
   Vote,
   AlertTriangle,
   Shield,
-  ArrowRight,
   Scale,
 } from 'lucide-react';
-import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   Card,

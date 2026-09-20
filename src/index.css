@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,13 +40,70 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  button, input, textarea, select {
+    font: inherit;
+  }
+  .font-mono {
+    font-family: 'DM Mono', ui-monospace, monospace;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .app-scene {
+    isolation: isolate;
+    perspective: 1200px;
+  }
+
+  .scene-depth {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 10%, hsl(258 90% 66% / 0.1), transparent 42%);
+  }
+
+  .scene-orb {
+    position: absolute;
+    width: 26rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    filter: blur(52px);
+    opacity: 0.22;
+    transform: translate3d(0, 0, 0);
+    animation: scene-float 14s ease-in-out infinite alternate;
+  }
+
+  .scene-orb-primary {
+    top: 8%;
+    left: -10%;
+    background: hsl(258 90% 66% / 0.5);
+  }
+
+  .scene-orb-accent {
+    right: -12%;
+    bottom: 8%;
+    background: hsl(173 80% 40% / 0.42);
+    animation-delay: -6s;
+    animation-duration: 18s;
+  }
+
+  .scene-grid {
+    position: absolute;
+    inset: -20%;
+    opacity: 0.22;
+    background-image: linear-gradient(hsl(var(--primary) / 0.16) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / 0.12) 1px, transparent 1px);
+    background-size: 80px 80px;
+    transform: rotateX(64deg) translateY(24%);
+    transform-origin: center bottom;
+    animation: scene-drift 24s linear infinite;
   }
 
   .bg-grid {
@@ -68,9 +127,89 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  .glass-border {
-    border: 1px solid hsl(var(--border) / 0.5);
+.glass-border {
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.law-mark {
+  position: relative;
+  transform: perspective(500px) rotateX(8deg) rotateY(-10deg);
+  box-shadow: 10px 14px 0 hsl(240 10% 2% / 0.3), 0 0 32px hsl(258 90% 66% / 0.25);
+}
+
+.law-mark::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid hsl(0 0% 100% / 0.25);
+  pointer-events: none;
+}
+
+.hero-art {
+  transform: perspective(900px) rotateY(-8deg) rotateX(2deg);
+  box-shadow: 24px 28px 0 hsl(240 10% 2% / 0.22), 0 28px 60px hsl(240 10% 2% / 0.45);
+}
+
+@media (max-width: 640px) {
+  .hero-art {
+    transform: perspective(700px) rotateY(-4deg) rotateX(1deg);
   }
+}
+}
+
+/* Wallet adapter modal: keep the native Solana flow, give it a focused LexIntent surface. */
+.wallet-adapter-modal {
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+}
+.wallet-adapter-modal-overlay {
+  background: hsl(240 10% 3.9% / 0.76) !important;
+  backdrop-filter: blur(10px);
+}
+.wallet-adapter-modal-container {
+  width: min(calc(100vw - 24px), 390px) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 24px !important;
+  padding: 24px !important;
+  background: hsl(var(--card)) !important;
+  box-shadow: 0 24px 80px hsl(240 10% 3.9% / 0.55) !important;
+}
+.wallet-adapter-modal-title {
+  margin-bottom: 18px !important;
+  color: hsl(var(--foreground)) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+.wallet-adapter-modal-list {
+  margin: 0 !important;
+}
+.wallet-adapter-modal-list li {
+  margin-bottom: 10px !important;
+}
+.wallet-adapter-modal-list li:last-child {
+  margin-bottom: 0 !important;
+}
+.wallet-adapter-modal-list li button {
+  min-height: 56px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 14px !important;
+  background: hsl(var(--muted) / 0.5) !important;
+  color: hsl(var(--foreground)) !important;
+  font-size: 0.95rem !important;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+.wallet-adapter-modal-list li button:hover {
+  border-color: hsl(var(--primary) / 0.6) !important;
+  background: hsl(var(--primary) / 0.1) !important;
+  transform: translateY(-1px);
+}
+.wallet-adapter-modal-button-close {
+  color: hsl(var(--muted-foreground)) !important;
 }
 
 /* Solana gradient text */
@@ -98,6 +237,16 @@
 }
 
 /* Animations */
+@keyframes scene-float {
+  0% { transform: translate3d(-2%, -1%, 0) scale(0.96); }
+  100% { transform: translate3d(8%, 6%, 0) scale(1.08); }
+}
+
+@keyframes scene-drift {
+  0% { transform: rotateX(64deg) translate3d(0, 24%, 0); }
+  100% { transform: rotateX(64deg) translate3d(-5%, 30%, 0); }
+}
+
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 20px hsl(258 90% 66% / 0.3);

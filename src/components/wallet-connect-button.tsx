@@ -1,6 +1,6 @@
 import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { Wallet, Copy, Check } from 'lucide-react';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import { Wallet, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,15 +11,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/utils';
-
 export function WalletConnectButton() {
   const { connected, publicKey, disconnect } = useWallet();
+  const { setVisible } = useWalletModal();
   const [copied, setCopied] = useState(false);
 
   if (!connected) {
     return (
-      <WalletMultiButton className="!bg-primary !text-primary-foreground !rounded-lg !h-9 !px-4 !text-sm !font-medium !border-0 hover:!bg-primary/90 !transition-colors" />
+      <Button
+        type="button"
+        onClick={() => setVisible(true)}
+        className="wallet-connect-trigger h-9 min-w-0 gap-2 rounded-full border-0 bg-primary px-3 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:h-10 sm:px-4 sm:text-sm"
+      >
+        <Wallet className="size-4 shrink-0" />
+        <span className="hidden min-[360px]:inline">Select wallet</span>
+        <span className="min-[360px]:hidden">Connect</span>
+        <ArrowUpRight className="size-3.5 opacity-70" />
+      </Button>
     );
   }
 
