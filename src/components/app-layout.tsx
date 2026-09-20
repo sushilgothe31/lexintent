@@ -42,14 +42,19 @@ export function AppLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grid">
+    <div className="min-h-screen bg-background bg-grid app-scene">
+      <div className="scene-depth pointer-events-none" aria-hidden="true">
+        <div className="scene-orb scene-orb-primary" />
+        <div className="scene-orb scene-orb-accent" />
+        <div className="scene-grid" />
+      </div>
       <div className="fixed inset-0 bg-radial-glow pointer-events-none" />
 
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex fixed left-0 top-0 h-full w-64 flex-col border-r border-border bg-card/40 glass z-40">
         <div className="flex items-center gap-3 px-6 py-6 border-b border-border">
-          <div className="law-mark flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-[#6d4aff] to-accent shadow-lg shadow-primary/20">
-            <Scale className="h-5 w-5 text-white" />
+          <div className="law-mark flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary via-[#6d4aff] to-accent shadow-lg shadow-primary/20">
+            <img src="/justice-statue.jpeg" alt="LexIntent justice mark" className="h-full w-full object-cover object-[62%_center] mix-blend-luminosity opacity-90" />
           </div>
           <div>
             <h1 className="font-display text-lg font-semibold tracking-tight">LexIntent</h1>
@@ -113,8 +118,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
       {/* Mobile header */}
       <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/80 glass px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
-            <Scale className="h-4 w-4 text-white" />
+          <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-primary to-accent shadow-md shadow-primary/20">
+            <img src="/justice-statue.jpeg" alt="LexIntent justice mark" className="h-full w-full object-cover object-[62%_center] mix-blend-luminosity opacity-90" />
           </div>
           <span className="font-semibold tracking-tight text-sm sm:text-base">LexIntent</span>
         </div>

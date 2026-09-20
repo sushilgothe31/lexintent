@@ -56,6 +56,56 @@
     text-wrap: balance;
   }
 
+  .app-scene {
+    isolation: isolate;
+    perspective: 1200px;
+  }
+
+  .scene-depth {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 10%, hsl(258 90% 66% / 0.1), transparent 42%);
+  }
+
+  .scene-orb {
+    position: absolute;
+    width: 26rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    filter: blur(52px);
+    opacity: 0.22;
+    transform: translate3d(0, 0, 0);
+    animation: scene-float 14s ease-in-out infinite alternate;
+  }
+
+  .scene-orb-primary {
+    top: 8%;
+    left: -10%;
+    background: hsl(258 90% 66% / 0.5);
+  }
+
+  .scene-orb-accent {
+    right: -12%;
+    bottom: 8%;
+    background: hsl(173 80% 40% / 0.42);
+    animation-delay: -6s;
+    animation-duration: 18s;
+  }
+
+  .scene-grid {
+    position: absolute;
+    inset: -20%;
+    opacity: 0.22;
+    background-image: linear-gradient(hsl(var(--primary) / 0.16) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / 0.12) 1px, transparent 1px);
+    background-size: 80px 80px;
+    transform: rotateX(64deg) translateY(24%);
+    transform-origin: center bottom;
+    animation: scene-drift 24s linear infinite;
+  }
+
   .bg-grid {
     background-image:
       linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
@@ -187,6 +237,16 @@
 }
 
 /* Animations */
+@keyframes scene-float {
+  0% { transform: translate3d(-2%, -1%, 0) scale(0.96); }
+  100% { transform: translate3d(8%, 6%, 0) scale(1.08); }
+}
+
+@keyframes scene-drift {
+  0% { transform: rotateX(64deg) translate3d(0, 24%, 0); }
+  100% { transform: rotateX(64deg) translate3d(-5%, 30%, 0); }
+}
+
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 20px hsl(258 90% 66% / 0.3);
