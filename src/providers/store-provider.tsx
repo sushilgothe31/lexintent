@@ -339,7 +339,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   );
 
   const revealVote = useCallback(
-    async (escrowId: string, vote: 0 | 1, _salt: string) => {
+    async (escrowId: string, vote: 0 | 1, salt: string) => {
+      void salt;
       await delay(800);
       const walletAddr = publicKey?.toBase58() ?? 'UnknownWallet11111111111111111111111111';
 

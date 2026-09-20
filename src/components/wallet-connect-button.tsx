@@ -11,8 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/utils';
-
 export function WalletConnectButton() {
   const { connected, publicKey, disconnect } = useWallet();
   const [copied, setCopied] = useState(false);

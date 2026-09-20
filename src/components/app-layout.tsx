@@ -6,7 +6,6 @@ import {
   History,
   Scale,
   Menu,
-  X,
 } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
