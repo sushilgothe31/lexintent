@@ -111,12 +111,12 @@ export function AppLayout({ children }: { children: ReactNode }) {
       </aside>
 
       {/* Mobile header */}
-      <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/80 glass px-4 py-3">
+      <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/80 glass px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
             <Scale className="h-4 w-4 text-white" />
           </div>
-          <span className="font-bold">LexIntent</span>
+          <span className="font-semibold tracking-tight text-sm sm:text-base">LexIntent</span>
         </div>
         <div className="flex items-center gap-2">
           <WalletConnectButton />

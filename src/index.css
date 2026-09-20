@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,7 +40,14 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  button, input, textarea, select {
+    font: inherit;
+  }
+  .font-mono {
+    font-family: 'DM Mono', ui-monospace, monospace;
   }
 }
 
@@ -71,6 +80,56 @@
   .glass-border {
     border: 1px solid hsl(var(--border) / 0.5);
   }
+}
+
+/* Wallet adapter modal: keep the native Solana flow, give it a focused LexIntent surface. */
+.wallet-adapter-modal {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+.wallet-adapter-modal-overlay {
+  background: hsl(240 10% 3.9% / 0.76) !important;
+  backdrop-filter: blur(10px);
+}
+.wallet-adapter-modal-container {
+  width: min(calc(100vw - 24px), 390px) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 24px !important;
+  padding: 24px !important;
+  background: hsl(var(--card)) !important;
+  box-shadow: 0 24px 80px hsl(240 10% 3.9% / 0.55) !important;
+}
+.wallet-adapter-modal-title {
+  margin-bottom: 18px !important;
+  color: hsl(var(--foreground)) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+}
+.wallet-adapter-modal-list {
+  margin: 0 !important;
+}
+.wallet-adapter-modal-list li {
+  margin-bottom: 10px !important;
+}
+.wallet-adapter-modal-list li:last-child {
+  margin-bottom: 0 !important;
+}
+.wallet-adapter-modal-list li button {
+  min-height: 56px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 14px !important;
+  background: hsl(var(--muted) / 0.5) !important;
+  color: hsl(var(--foreground)) !important;
+  font-size: 0.95rem !important;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+.wallet-adapter-modal-list li button:hover {
+  border-color: hsl(var(--primary) / 0.6) !important;
+  background: hsl(var(--primary) / 0.1) !important;
+  transform: translateY(-1px);
+}
+.wallet-adapter-modal-button-close {
+  color: hsl(var(--muted-foreground)) !important;
 }
 
 /* Solana gradient text */
