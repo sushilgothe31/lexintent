@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -40,7 +40,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   button, input, textarea, select {
@@ -77,14 +77,44 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  .glass-border {
-    border: 1px solid hsl(var(--border) / 0.5);
+.glass-border {
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.law-mark {
+  position: relative;
+  transform: perspective(500px) rotateX(8deg) rotateY(-10deg);
+  box-shadow: 10px 14px 0 hsl(240 10% 2% / 0.3), 0 0 32px hsl(258 90% 66% / 0.25);
+}
+
+.law-mark::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid hsl(0 0% 100% / 0.25);
+  pointer-events: none;
+}
+
+.hero-art {
+  transform: perspective(900px) rotateY(-8deg) rotateX(2deg);
+  box-shadow: 24px 28px 0 hsl(240 10% 2% / 0.22), 0 28px 60px hsl(240 10% 2% / 0.45);
+}
+
+@media (max-width: 640px) {
+  .hero-art {
+    transform: perspective(700px) rotateY(-4deg) rotateX(1deg);
   }
+}
 }
 
 /* Wallet adapter modal: keep the native Solana flow, give it a focused LexIntent surface. */
 .wallet-adapter-modal {
-  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
 }
 .wallet-adapter-modal-overlay {
   background: hsl(240 10% 3.9% / 0.76) !important;
