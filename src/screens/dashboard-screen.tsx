@@ -122,9 +122,9 @@ export function DashboardScreen() {
     .reduce((sum, a) => sum + a.amount, 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-primary/20 bg-gradient-to-br from-[#171229] via-card to-[#071d1b] p-5 shadow-2xl shadow-primary/10 sm:p-7 lg:p-10">
+      <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-[#171229] via-card to-[#071d1b] p-4 shadow-2xl shadow-primary/10 sm:p-7 lg:p-10">
         <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
         <div className="absolute -bottom-20 left-1/3 h-40 w-72 rounded-full bg-accent/15 blur-3xl" />
         <div className="relative grid items-center gap-8 lg:grid-cols-[1.05fr_.95fr]">
@@ -135,7 +135,7 @@ export function DashboardScreen() {
                 On-chain justice protocol
               </span>
             </div>
-            <h1 className="font-display text-[2.35rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl">
+            <h1 className="font-display max-w-[16ch] text-[2rem] font-semibold leading-[1.05] tracking-tight sm:text-5xl">
               Agreements with <span className="solana-gradient">conviction.</span>
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
@@ -174,7 +174,7 @@ export function DashboardScreen() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         <StatCard icon={Lock} label="Total Locked" value={`${totalLocked} SOL`} accent="accent" />
         <StatCard icon={TrendingUp} label="Active" value={String(activeCount)} accent="primary" />
         <StatCard icon={Gavel} label="Disputed" value={String(disputedCount)} accent="destructive" />

@@ -116,7 +116,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       </aside>
 
       {/* Mobile header */}
-      <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/80 glass px-3 py-3 sm:px-4">
+      <header className="lg:hidden sticky top-0 z-40 flex items-center justify-between border-b border-border bg-card/85 glass px-3 py-3 sm:px-4">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-primary to-accent shadow-md shadow-primary/20">
             <img src="/justice-statue.jpeg" alt="LexIntent justice mark" className="h-full w-full object-cover object-[62%_center] mix-blend-luminosity opacity-90" />
@@ -191,10 +191,39 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
       {/* Main content */}
       <main className="lg:pl-64">
-        <div className="px-4 py-6 lg:px-8 lg:py-8 max-w-7xl mx-auto">
+        <div className="mx-auto max-w-7xl px-3 py-5 pb-24 sm:px-4 sm:py-6 lg:px-8 lg:py-8 lg:pb-8">
           {children}
         </div>
       </main>
+
+      {/* Mobile bottom navigation */}
+      <nav className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 rounded-2xl border border-white/10 bg-card/90 p-1.5 shadow-2xl shadow-black/30 backdrop-blur-xl lg:hidden" aria-label="Primary navigation">
+        {NAV_ITEMS.slice(0, 3).map((item) => {
+          const Icon = item.icon;
+          const active = isActive(item.route);
+          return (
+            <button
+              key={item.label}
+              onClick={() => navigate(item.route)}
+              className={cn(
+                'flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[10px] font-semibold transition-colors',
+                active ? 'bg-primary/15 text-primary' : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+              )}
+              aria-current={active ? 'page' : undefined}
+            >
+              <Icon className="h-4 w-4" />
+              <span>{item.label === 'Create Agreement' ? 'Create' : item.label.replace(' Dashboard', '')}</span>
+            </button>
+          );
+        })}
+        <button
+          onClick={() => setTxPanelOpen(true)}
+          className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl px-1 text-[10px] font-semibold text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground"
+        >
+          <History className="h-4 w-4" />
+          <span>History</span>
+        </button>
+      </nav>
 
       {/* Transaction history panel */}
       <TransactionHistoryPanel open={txPanelOpen} onOpenChange={setTxPanelOpen} />
